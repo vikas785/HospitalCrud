@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-toastify/dist/ReactToastify.css';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {createStore} from "redux";
+import patientReducer from './redux/reducers/patientReducer';
+import {Provider} from 'react-redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+
+const store = createStore(patientReducer, composeWithDevTools())
+
+
+ReactDOM.render( 
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+    
+  </Provider>,
   document.getElementById('root')
 );
 
